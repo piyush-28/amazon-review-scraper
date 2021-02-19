@@ -9,13 +9,12 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import time
 from requests_module import Request
-import sys
 
 
 
 
-for i in range(1, len(sys.argv)):
-    print(sys.argv[i])
+
+
 
 def get_details(url):
     L = list()
@@ -121,14 +120,9 @@ def main(url, start_page, end_page, path):
 test_url= 'https://www.amazon.com/Polaroid-Color-I-Type-Film-Photos/product-reviews/B084SDXVBD/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&filterByStar=positive'
 
 
-
-if len(sys.argv) < 5:
-    print('Provide URL, First Page number, Last page number, CSV path as args')
-else:
-    url = sys.argv[1]
-    first_page_num = int(sys.argv[2])
-    last_page_num = int(sys.argv[3])
-    
-    csv_path = sys.argv[4]
-    main(url, first_page_num, last_page_num, csv_path)
+url = input('Enter the url: ')
+first_page_num = int(input('Enter the starting page for scraping: '))
+last_page_num = int(input('Enter the last page for scraping: '))
+csv_path = input('Enter the CSV Path: ')
+main(url, first_page_num, last_page_num, csv_path)
 
