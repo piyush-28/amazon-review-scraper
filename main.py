@@ -126,8 +126,9 @@ if len(sys.argv) < 5:
     print('Provide URL, First Page number, Last page number, CSV path as args')
 else:
     url = sys.argv[1]
-    first_page_num = sys.argv[2]
-    last_page_num = sys.argv[3]
+    first_page_num = int(sys.argv[2])
+    last_page_num = int(sys.argv[3])
+    
     csv_path = sys.argv[4]
     main(url, first_page_num, last_page_num, csv_path)
 
