@@ -9,7 +9,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import time
 from requests_module import Request
-
+import traceback
 
 
 
@@ -90,6 +90,7 @@ def save_to_csv(data, path):
     try:
         df.to_csv(path)
     except:
+        traceback.print_exc()
         print("Unable to save to CSV")
         
         
