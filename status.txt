@@ -1,0 +1,2 @@
+spend aroudn an hour making plan about refactoring the code, prototyping, trying how to get the reviews url from asin and figuring out
+logic for getting page numbers and figuring out how to refactor code
