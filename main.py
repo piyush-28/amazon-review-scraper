@@ -8,7 +8,7 @@ Created on Fri Feb 19 22:56:37 2021
 import pandas as pd
 import time
 import traceback
-from utils import clean_reviews
+from utils import clean_reviews, get_soup
 from amazon_reviews_scraper import AmazonReviewsScraper
 
 
@@ -30,14 +30,16 @@ def save_to_csv(data, path):
 #    return new_dic
 
 
-def main(asin):
+def main(asin, path):
     scraper = AmazonReviewsScraper(asin)
+    urls = scraper.urls
     
     L = list()
     for url in urls:
         print('Scraping Page: ', url)
         print('--------------------------------------------------------------------------------------')
-        details = get_details(url)
+        soup = get_soup(url)
+        details = scraper.get_details(soup)
         L += details
         L = list(map(clean_reviews, L))
         print('Saving to CSV...')
@@ -47,12 +49,12 @@ def main(asin):
         
         
         
-test_url= 'https://www.amazon.com/Polaroid-Color-I-Type-Film-Photos/product-reviews/B084SDXVBD/ref=cm_cr_arp_d_paging_btm_next_2?ie=UTF8&reviewerType=all_reviews&filterByStar=positive'
 
+asin = input('Enter the asin number of the product: ')
 
-url = input('Enter the url: ')
-first_page_num = int(input('Enter the starting page for scraping: '))
-last_page_num = int(input('Enter the last page for scraping: '))
 csv_path = input('Enter the CSV Path: ')
-main(url, first_page_num, last_page_num, csv_path)
+main(asin, csv_path)
+
+
+
 

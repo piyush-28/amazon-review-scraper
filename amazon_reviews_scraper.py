@@ -15,7 +15,7 @@ class AmazonReviewsScraper:
     def __init__(self, asin):
         
         self.review_url = self.get_review_url_from_asin(asin)
-        self.soup = get_soup(self.reviews_url)
+        self.soup = get_soup(self.review_url)
         self.total_pages = self.get_total_pages_from_reviews_url()
         self.last_page = self.total_pages if self.total_pages <= 500 else 500
         self.urls = self.generate_urls(self.review_url, 1, self.last_page)
@@ -49,17 +49,17 @@ class AmazonReviewsScraper:
         total_pages = math.ceil(int(total_reviews)/ 10)
         return total_pages
     
-    def generate_urls(review_url, start_page, end_page):
+    def generate_urls(self, review_url, start_page, end_page):
         urls = list()
-        s = review_url + 'pageNumber='
+        s = review_url + '&pageNumber='
         for i in range(start_page, end_page + 1):
             url = s+ str(i)
             urls.append(url)
             
         return urls
 
-    
-    def get_details(soup):
+
+    def get_details(self, soup):
         L = list()        
         reviews = soup.select('div[id*=customer_review]')
         for review in reviews:
@@ -108,8 +108,6 @@ class AmazonReviewsScraper:
             
             
         return L
-
-    
 
     
 test_asin = 'B07R8GD47V'
