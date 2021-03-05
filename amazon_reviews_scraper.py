@@ -1,12 +1,11 @@
-# -*- coding: utf-8 -*-
 """
 Created on Sun Feb 21 12:24:01 2021
 
 @author: Piyush
 """
 import math
-from requests_module import Request
-from bs4 import BeautifulSoup
+# from requests_module import Request
+# from bs4 import BeautifulSoup
 from utils import get_soup
 
 class AmazonReviewsScraper:
@@ -104,6 +103,18 @@ class AmazonReviewsScraper:
                 
             except:
                 D['review_body'] = None
+                
+            
+            try:
+                review_text = review.select_one(
+                    'span[class*=review-date]').text
+                
+                temp = review_text.find(' on ')
+                review_date = review_text[temp + 4:]
+                D['review_date'] = review_date
+                
+            except:
+                D['review_date'] = None
             L.append(D)
             
             

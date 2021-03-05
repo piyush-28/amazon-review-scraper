@@ -56,5 +56,5 @@ csv_path = input('Enter the CSV Path: ')
 main(asin, csv_path)
 
 
-
+test_asi= 'B08FLBCDLW'
 
